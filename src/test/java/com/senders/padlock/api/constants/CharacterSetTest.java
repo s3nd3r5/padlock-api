@@ -1,0 +1,273 @@
+package com.senders.padlock.api.constants;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+
+
+public class CharacterSetTest {
+    @Test
+    public void testHex(){
+        CharacterSet hex = CharacterSet.HEX;
+        char[] hex_characters = hex.getCharacters();
+        List<Character> hexList = Arrays.asList(ArrayUtils.toObject(hex_characters));
+        assertTrue(hexList.contains('0'));
+        assertTrue(hexList.contains('1'));
+        assertTrue(hexList.contains('2'));
+        assertTrue(hexList.contains('3'));
+        assertTrue(hexList.contains('4'));
+        assertTrue(hexList.contains('5'));
+        assertTrue(hexList.contains('6'));
+        assertTrue(hexList.contains('7'));
+        assertTrue(hexList.contains('8'));
+        assertTrue(hexList.contains('9'));
+        assertTrue(hexList.contains('A'));
+        assertTrue(hexList.contains('B'));
+        assertTrue(hexList.contains('C'));
+        assertTrue(hexList.contains('D'));
+        assertTrue(hexList.contains('E'));
+        assertTrue(hexList.contains('F'));
+    }
+    @Test
+    public void testNumeric(){
+        CharacterSet charset = CharacterSet.NUMERIC;
+        char[] arr = charset.getCharacters();
+        List<Character> list = Arrays.asList(ArrayUtils.toObject(arr));
+        assertTrue(list.contains('0'));
+        assertTrue(list.contains('1'));
+        assertTrue(list.contains('2'));
+        assertTrue(list.contains('3'));
+        assertTrue(list.contains('4'));
+        assertTrue(list.contains('5'));
+        assertTrue(list.contains('6'));
+        assertTrue(list.contains('7'));
+        assertTrue(list.contains('8'));
+        assertTrue(list.contains('9'));
+    }
+    @Test
+    public void testAlphaNumeric(){
+        CharacterSet charset = CharacterSet.ALPHA_NUMERIC;
+        char[] arr = charset.getCharacters();
+        List<Character> list = Arrays.asList(ArrayUtils.toObject(arr));
+        assertTrue(list.contains('0'));
+        assertTrue(list.contains('1'));
+        assertTrue(list.contains('2'));
+        assertTrue(list.contains('3'));
+        assertTrue(list.contains('4'));
+        assertTrue(list.contains('5'));
+        assertTrue(list.contains('6'));
+        assertTrue(list.contains('7'));
+        assertTrue(list.contains('8'));
+        assertTrue(list.contains('9'));
+        assertTrue(list.contains('A'));
+        assertTrue(list.contains('B'));
+        assertTrue(list.contains('C'));
+        assertTrue(list.contains('E'));
+        assertTrue(list.contains('F'));
+        assertTrue(list.contains('G'));
+        assertTrue(list.contains('H'));
+        assertTrue(list.contains('I'));
+        assertTrue(list.contains('J'));
+        assertTrue(list.contains('K'));
+        assertTrue(list.contains('L'));
+        assertTrue(list.contains('M'));
+        assertTrue(list.contains('N'));
+        assertTrue(list.contains('O'));
+        assertTrue(list.contains('P'));
+        assertTrue(list.contains('Q'));
+        assertTrue(list.contains('R'));
+        assertTrue(list.contains('S'));
+        assertTrue(list.contains('T'));
+        assertTrue(list.contains('U'));
+        assertTrue(list.contains('V'));
+        assertTrue(list.contains('W'));
+        assertTrue(list.contains('X'));
+        assertTrue(list.contains('Y'));
+        assertTrue(list.contains('Z'));
+    }
+    @Test
+    public void testAlpha(){
+        CharacterSet charset = CharacterSet.ALPHA;
+        char[] arr = charset.getCharacters();
+        List<Character> list = Arrays.asList(ArrayUtils.toObject(arr));
+        assertTrue(list.contains('A'));
+        assertTrue(list.contains('B'));
+        assertTrue(list.contains('C'));
+        assertTrue(list.contains('E'));
+        assertTrue(list.contains('F'));
+        assertTrue(list.contains('G'));
+        assertTrue(list.contains('H'));
+        assertTrue(list.contains('I'));
+        assertTrue(list.contains('J'));
+        assertTrue(list.contains('K'));
+        assertTrue(list.contains('L'));
+        assertTrue(list.contains('M'));
+        assertTrue(list.contains('N'));
+        assertTrue(list.contains('O'));
+        assertTrue(list.contains('P'));
+        assertTrue(list.contains('Q'));
+        assertTrue(list.contains('R'));
+        assertTrue(list.contains('S'));
+        assertTrue(list.contains('T'));
+        assertTrue(list.contains('U'));
+        assertTrue(list.contains('V'));
+        assertTrue(list.contains('W'));
+        assertTrue(list.contains('X'));
+        assertTrue(list.contains('Y'));
+        assertTrue(list.contains('Z'));
+    }
+    @Test
+    public void testPrintable(){
+        CharacterSet charset = CharacterSet.PRINTABLE;
+        char[] arr = charset.getCharacters();
+        List<Character> list = Arrays.asList(ArrayUtils.toObject(arr));
+        assertTrue(list.contains('0'));
+        assertTrue(list.contains('1'));
+        assertTrue(list.contains('2'));
+        assertTrue(list.contains('3'));
+        assertTrue(list.contains('4'));
+        assertTrue(list.contains('5'));
+        assertTrue(list.contains('6'));
+        assertTrue(list.contains('7'));
+        assertTrue(list.contains('8'));
+        assertTrue(list.contains('9'));
+        assertTrue(list.contains('A'));
+        assertTrue(list.contains('B'));
+        assertTrue(list.contains('C'));
+        assertTrue(list.contains('E'));
+        assertTrue(list.contains('F'));
+        assertTrue(list.contains('G'));
+        assertTrue(list.contains('H'));
+        assertTrue(list.contains('I'));
+        assertTrue(list.contains('J'));
+        assertTrue(list.contains('K'));
+        assertTrue(list.contains('L'));
+        assertTrue(list.contains('M'));
+        assertTrue(list.contains('N'));
+        assertTrue(list.contains('O'));
+        assertTrue(list.contains('P'));
+        assertTrue(list.contains('Q'));
+        assertTrue(list.contains('R'));
+        assertTrue(list.contains('S'));
+        assertTrue(list.contains('T'));
+        assertTrue(list.contains('U'));
+        assertTrue(list.contains('V'));
+        assertTrue(list.contains('W'));
+        assertTrue(list.contains('X'));
+        assertTrue(list.contains('Y'));
+        assertTrue(list.contains('Z'));
+        assertTrue(list.contains('`'));
+        assertTrue(list.contains('~'));
+        assertTrue(list.contains('!'));
+        assertTrue(list.contains('@'));
+        assertTrue(list.contains('#'));
+        assertTrue(list.contains('$'));
+        assertTrue(list.contains('%'));
+        assertTrue(list.contains('^'));
+        assertTrue(list.contains('&'));
+        assertTrue(list.contains('*'));
+        assertTrue(list.contains('('));
+        assertTrue(list.contains(')'));
+        assertTrue(list.contains('_'));
+        assertTrue(list.contains('-'));
+        assertTrue(list.contains('+'));
+        assertTrue(list.contains('='));
+        assertTrue(list.contains('['));
+        assertTrue(list.contains('{'));
+        assertTrue(list.contains(']'));
+        assertTrue(list.contains('}'));
+        assertTrue(list.contains('\\'));
+        assertTrue(list.contains('|'));
+        assertTrue(list.contains('|'));
+        assertTrue(list.contains(';'));
+        assertTrue(list.contains(':'));
+        assertTrue(list.contains('\''));
+        assertTrue(list.contains('\"'));
+        assertTrue(list.contains(','));
+        assertTrue(list.contains('<'));
+        assertTrue(list.contains('.'));
+        assertTrue(list.contains('>'));
+        assertTrue(list.contains('/'));
+        assertTrue(list.contains('?'));
+    }
+    @Test
+    public void testPrintableWithSpaces(){
+        CharacterSet charset = CharacterSet.PRINTABLE_WITH_SPACES;
+        char[] arr = charset.getCharacters();
+        List<Character> list = Arrays.asList(ArrayUtils.toObject(arr));
+        assertTrue(list.contains('0'));
+        assertTrue(list.contains('1'));
+        assertTrue(list.contains('2'));
+        assertTrue(list.contains('3'));
+        assertTrue(list.contains('4'));
+        assertTrue(list.contains('5'));
+        assertTrue(list.contains('6'));
+        assertTrue(list.contains('7'));
+        assertTrue(list.contains('8'));
+        assertTrue(list.contains('9'));
+        assertTrue(list.contains('A'));
+        assertTrue(list.contains('B'));
+        assertTrue(list.contains('C'));
+        assertTrue(list.contains('E'));
+        assertTrue(list.contains('F'));
+        assertTrue(list.contains('G'));
+        assertTrue(list.contains('H'));
+        assertTrue(list.contains('I'));
+        assertTrue(list.contains('J'));
+        assertTrue(list.contains('K'));
+        assertTrue(list.contains('L'));
+        assertTrue(list.contains('M'));
+        assertTrue(list.contains('N'));
+        assertTrue(list.contains('O'));
+        assertTrue(list.contains('P'));
+        assertTrue(list.contains('Q'));
+        assertTrue(list.contains('R'));
+        assertTrue(list.contains('S'));
+        assertTrue(list.contains('T'));
+        assertTrue(list.contains('U'));
+        assertTrue(list.contains('V'));
+        assertTrue(list.contains('W'));
+        assertTrue(list.contains('X'));
+        assertTrue(list.contains('Y'));
+        assertTrue(list.contains('Z'));
+        assertTrue(list.contains('`'));
+        assertTrue(list.contains('~'));
+        assertTrue(list.contains('!'));
+        assertTrue(list.contains('@'));
+        assertTrue(list.contains('#'));
+        assertTrue(list.contains('$'));
+        assertTrue(list.contains('%'));
+        assertTrue(list.contains('^'));
+        assertTrue(list.contains('&'));
+        assertTrue(list.contains('*'));
+        assertTrue(list.contains('('));
+        assertTrue(list.contains(')'));
+        assertTrue(list.contains('_'));
+        assertTrue(list.contains('-'));
+        assertTrue(list.contains('+'));
+        assertTrue(list.contains('='));
+        assertTrue(list.contains('['));
+        assertTrue(list.contains('{'));
+        assertTrue(list.contains(']'));
+        assertTrue(list.contains('}'));
+        assertTrue(list.contains('\\'));
+        assertTrue(list.contains('|'));
+        assertTrue(list.contains('|'));
+        assertTrue(list.contains(';'));
+        assertTrue(list.contains(':'));
+        assertTrue(list.contains('\''));
+        assertTrue(list.contains('\"'));
+        assertTrue(list.contains(','));
+        assertTrue(list.contains('<'));
+        assertTrue(list.contains('.'));
+        assertTrue(list.contains('>'));
+        assertTrue(list.contains('/'));
+        assertTrue(list.contains('?'));
+        assertTrue(list.contains(' '));
+
+    }
+}
