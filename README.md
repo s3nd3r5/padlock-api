@@ -3,7 +3,7 @@ padlock-api
 
 Java API for Padlock System
 
-version 1.0.0-SNAPSHOT
+version `1.0.0-0-SNAPSHOT`
 
 [![Build Status](https://api.shippable.com/projects/54465974b904a4b21567c7ee/badge?branchName=master)](https://app.shippable.com/projects/54465974b904a4b21567c7ee/builds/latest)
 
