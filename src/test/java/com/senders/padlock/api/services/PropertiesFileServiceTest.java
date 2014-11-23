@@ -5,9 +5,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
@@ -43,18 +46,18 @@ public class PropertiesFileServiceTest {
         Properties p = new Properties();
         p.setProperty("test", "propertyValue");
         p.store(new FileOutputStream("test-read-file.properties"), null);
-        when(encryptionService.readEncryptedFile(any(File.class))).thenReturn(new FileInputStream("test-read-file.properties"));
+        when(encryptionService.readEncryptedFile(any(Path.class))).thenReturn(new FileInputStream("test-read-file.properties"));
         Properties properties = propertiesFileService.readFile("test-read-file.properties");
         assertEquals("propertyValue",properties.getProperty("test"));
     }
 
     @Test
     public void testWriteFile() throws Exception {
-        File f = new File("test-write-file.properties");
-        if(f.exists()) f.delete();
+        Path f = Paths.get("test-write-file.properties");
+        Files.deleteIfExists(f);
         Properties p = new Properties();
         p.setProperty("test", "propertyValue");
-        doNothing().when(encryptionService).encryptFile(any(File.class));
+        doNothing().when(encryptionService).encryptFile(any(Path.class));
         propertiesFileService.writeFile("test-write-file.properties", p);
         Properties properties = new Properties();
         properties.load(new FileInputStream("test-write-file.properties"));
@@ -83,14 +86,14 @@ public class PropertiesFileServiceTest {
 
     @Test (expected = RuntimeException.class)
     public void testWriteFileThrowsException(){
-        doThrow(new RuntimeException("Exception")).when(encryptionService).encryptFile(any(File.class));
+        doThrow(new RuntimeException("Exception")).when(encryptionService).encryptFile(any(Path.class));
         propertiesFileService.writeFile("test-write-file.properties",new Properties());
     }
 
     @After
-    public void destroy(){
-        new File("test-read-file.properties").delete();
-        new File("test-write-file.properties").delete();
+    public void destroy() throws IOException {
+        Files.deleteIfExists(Paths.get("test-read-file.properties"));
+        Files.deleteIfExists(Paths.get("test-write-file.properties"));
     }
 
 

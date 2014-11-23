@@ -6,8 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PropertiesFileService implements FileService<Properties> {
@@ -23,8 +24,7 @@ public class PropertiesFileService implements FileService<Properties> {
         Preconditions.checkArgument(StringUtils.isNotBlank(fileName), "File name cannot be blank");
         Properties properties = new Properties();
         try {
-            File f = new File(fileName);
-            if(!f.isFile()) throw new RuntimeException("File does not exist");
+            Path f = Paths.get(fileName);
             properties.load(encryptionService.readEncryptedFile(f));
             return properties;
         } catch (Exception e) {
@@ -39,10 +39,9 @@ public class PropertiesFileService implements FileService<Properties> {
         Preconditions.checkArgument(null != content,"Content cannot be null");
 
         try {
-            File f = new File(fileName);
-            if(!f.exists())f.createNewFile();
-            content.store(new FileOutputStream(f), null);
-            encryptionService.encryptFile(f);
+            Path path = Paths.get(fileName);
+            content.store(Files.newOutputStream(path), null);
+            encryptionService.encryptFile(path);
         } catch (Exception e) {
             logger.error("Unable to save file: " + fileName,e);
             throw new RuntimeException("Error saving file:"  + fileName);

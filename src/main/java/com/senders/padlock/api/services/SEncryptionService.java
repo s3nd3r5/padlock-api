@@ -4,12 +4,15 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.senders.sencryption.SEncryptor;
 import com.senders.sencryption.SEncryptorImpl;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.security.MessageDigest;
 
 public class SEncryptionService implements EncryptionService {
@@ -32,55 +35,35 @@ public class SEncryptionService implements EncryptionService {
     }
 
     @Override
-    public void encryptFile(File file) {
-        OutputStream outputStream = null;
-        InputStream inputStream = null;
+    public void encryptFile(Path file) {
         try{
-            inputStream = new FileInputStream(file);
-            byte[] encrypted = sEncryptor.encrypt(IOUtils.toByteArray(inputStream));
-            outputStream = new FileOutputStream(file);
-            outputStream.write(encrypted);
-            outputStream.flush();
+            byte[] encrypted = sEncryptor.encrypt(Files.readAllBytes(file));
+            Files.write(file,encrypted, StandardOpenOption.CREATE);
         } catch (Exception e){
             logger.warn("Unable to encrypt file",e);
             throw new RuntimeException("Unable to encrypt file");
-        }finally {
-            try { inputStream.close(); } catch (Exception ignore){}
-            try { outputStream.close(); } catch (Exception ignore){}
         }
     }
 
     @Override
-    public void decryptFile(File file) {
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
+    public void decryptFile(Path file) {
         try{
-            inputStream = new FileInputStream(file);
-            byte[] decrypted = sEncryptor.decrypt(IOUtils.toByteArray(inputStream));
-            outputStream = new FileOutputStream(file);
-            outputStream.write(decrypted);
-            outputStream.flush();
+            byte[] decrypted = sEncryptor.decrypt(Files.readAllBytes(file));
+            Files.write(file,decrypted, StandardOpenOption.CREATE);
         } catch (Exception e){
             logger.warn("Unable to decrypt file",e);
             throw new RuntimeException("Unable to decrypt file");
-        }finally {
-            try { inputStream.close(); } catch (Exception ignore){}
-            try { outputStream.close(); } catch (Exception ignore){}
         }
     }
 
     @Override
-    public InputStream readEncryptedFile(File file) {
-        InputStream inputStream = null;
+    public InputStream readEncryptedFile(Path file) {
         try{
-            inputStream = new FileInputStream(file);
-            byte[] decrypted = sEncryptor.decrypt(IOUtils.toByteArray(inputStream));
+            byte[] decrypted = sEncryptor.decrypt(Files.readAllBytes(file));
             return new ByteArrayInputStream(decrypted);
         } catch (Exception e){
             logger.warn("Unable to read and decrypt file",e);
             throw new RuntimeException("Unable to read and decrypt file");
-        }finally {
-            try { inputStream.close(); } catch (Exception ignore){}
         }
     }
 
